@@ -303,7 +303,7 @@
   ansible.builtin.file:
     state: directory
     path: "{{ output_dir }}/{{ item }}"
-    mode: "0755"
+    mode: "0750"
   loop:
     - link_dest_src
     - link_dest_dst
@@ -312,7 +312,7 @@
 - name: Setup - create source files for link_dest change detection
   ansible.builtin.copy:
     dest: "{{ output_dir }}/link_dest_src/{{ item }}"
-    mode: "0644"
+    mode: "0640"
     content: hello world
   loop:
     - foo.txt
@@ -339,7 +339,7 @@
 - name: Change the content of one source file only
   ansible.builtin.copy:
     dest: "{{ output_dir }}/link_dest_src/bar.txt"
-    mode: "0644"
+    mode: "0640"
     content: goodbye world
 
 # rsync -vv still lists the unchanged foo.txt, which used to hide the change
